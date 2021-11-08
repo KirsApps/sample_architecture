@@ -12,6 +12,8 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_architecture/parts/environment/cubit/environment_cubit.dart';
+import 'package:sample_architecture/parts/router/router.dart';
+import 'package:sample_architecture/ui_kit/ui_kit.dart';
 
 part 'app.dart';
 part 'initializers/dio.dart';
