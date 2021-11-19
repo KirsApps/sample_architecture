@@ -1,17 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:sample_architecture/root/root.dart';
 
-/// Cubit used to store and modify the dependency container
-class EnvironmentCubit extends Cubit<DependencyContainer> {
-  /// Creates Bloc
-  EnvironmentCubit(DependencyContainer container) : super(container);
+/// Cubit used to show current [Environment]
+class EnvironmentCubit extends Cubit<Environment> {
+  /// Creates Cubit
+  EnvironmentCubit(Environment environment) : super(environment);
 
-  /// Yields new state with [DependencyContainer] for [environment]
-  Future<void> changeEnvironment(Environment environment) async {
-    final container = await DependencyContainer.initializeFromEnv(environment);
-    emit(container);
-  }
-
-  /// Yields new state with [DependencyContainer] for current [environment]
-  Future<void> reInitialize() => changeEnvironment(state.environment);
+  /// Yields new state with new [environment]
+  void changeEnvironment(Environment environment) => emit(environment);
 }

@@ -14,21 +14,9 @@ class DependencyContainer {
   final Dio dio;
 
   ///Creates RootContainer
-  DependencyContainer._({
+  DependencyContainer({
     required this.config,
     required this.dio,
     required this.environment,
   });
-
-  /// Returns initialized DependencyContainer for [environment]
-  static Future<DependencyContainer> initializeFromEnv(
-      Environment environment) async {
-    final config = environment.config();
-    final dio = initializeDio(config.apiUrl);
-    return DependencyContainer._(
-      config: config,
-      dio: dio,
-      environment: environment,
-    );
-  }
 }

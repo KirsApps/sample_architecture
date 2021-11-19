@@ -1,3 +1,3 @@
 import 'package:sample_architecture/root/root.dart';
 
-Future<void> main() => runMain(Environment.mock);
+Future<void> main() => AppManager().runMain(Environment.mock);
