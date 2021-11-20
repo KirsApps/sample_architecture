@@ -1,18 +1,32 @@
 part of '../root.dart';
 
+/// The basic runner template.
+///
+/// This class initializes the [DependencyContainer] for this runner [environment],
+/// and runs the application with the [runApplication] method.
 abstract class Runner {
+  late DependencyContainer _container;
   Future<void> run(EnvironmentChangedCallback onEnvironmentChanged) async {
-    final container = await initializeContainer();
-    await runApplication(container, onEnvironmentChanged);
+    _container = await initializeContainer();
+    await runApplication(_container, onEnvironmentChanged);
   }
 
-  /// Returns initialized DependencyContainer for [environment]
+  /// Returns initialized DependencyContainer for the [environment].
   @protected
   Future<DependencyContainer> initializeContainer();
 
+  /// Runs application (the runApp function).
+  @protected
   Future<void> runApplication(DependencyContainer container,
       EnvironmentChangedCallback onEnvironmentChanged);
 
+  /// Cleans resources that this runner uses.
+  @protected
+  Future<void> clean() async {
+    await _container.dispose();
+  }
+
+  /// This runner environment.
   Environment get environment;
 }
 

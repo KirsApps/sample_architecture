@@ -19,4 +19,7 @@ class DependencyContainer {
     required this.dio,
     required this.environment,
   });
+
+  /// Frees resources that this container use.
+  Future<void> dispose() async {}
 }
