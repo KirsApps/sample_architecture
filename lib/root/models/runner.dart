@@ -17,8 +17,10 @@ abstract class Runner {
 
   /// Runs application (the runApp function).
   @protected
-  Future<void> runApplication(DependencyContainer container,
-      EnvironmentChangedCallback onEnvironmentChanged);
+  Future<void> runApplication(
+    DependencyContainer container,
+    EnvironmentChangedCallback onEnvironmentChanged,
+  );
 
   /// Cleans resources that this runner uses.
   @protected
@@ -43,29 +45,36 @@ abstract class AppRunner extends Runner {
   }
 
   @override
-  Future<void> runApplication(DependencyContainer container,
-      EnvironmentChangedCallback onEnvironmentChanged) async {
-    runApp(App(
-      key: ValueKey<DependencyContainer>(container),
-      container: container,
-      onEnvironmentChanged: onEnvironmentChanged,
-    ));
+  Future<void> runApplication(
+    DependencyContainer container,
+    EnvironmentChangedCallback onEnvironmentChanged,
+  ) async {
+    runApp(
+      App(
+        key: ValueKey<DependencyContainer>(container),
+        container: container,
+        onEnvironmentChanged: onEnvironmentChanged,
+      ),
+    );
   }
 }
 
 abstract class ErrorCatchRunner extends AppRunner {
   @override
-  Future<void> runApplication(DependencyContainer container,
-      EnvironmentChangedCallback onEnvironmentChanged) async {
+  Future<void> runApplication(
+    DependencyContainer container,
+    EnvironmentChangedCallback onEnvironmentChanged,
+  ) async {
     FlutterError.onError = (details) async {
       // handle
     };
     if (!kIsWeb) {
       Isolate.current.addErrorListener(
         RawReceivePort((dynamic pair) async {
-          final isolateError = pair as List;
+          //final isolateError = pair as List;
           // handle
-        }).sendPort,
+        })
+            .sendPort,
       );
     }
     runZonedGuarded<Future<void>>(
