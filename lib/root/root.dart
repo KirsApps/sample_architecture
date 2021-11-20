@@ -1,10 +1,11 @@
 library root;
 
 import 'dart:async';
+import 'dart:isolate';
 
-import 'package:catcher/catcher.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

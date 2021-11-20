@@ -19,7 +19,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   /// Instance of [RootRouter]
-  final RootRouter _rootRouter = RootRouter(Catcher.navigatorKey);
+  final RootRouter _rootRouter = RootRouter();
 
   @override
   Widget build(BuildContext context) {

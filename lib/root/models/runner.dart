@@ -53,39 +53,40 @@ abstract class AppRunner extends Runner {
   }
 }
 
-abstract class CatcherRunner extends AppRunner {
+abstract class ErrorCatchRunner extends AppRunner {
   @override
   Future<void> runApplication(DependencyContainer container,
       EnvironmentChangedCallback onEnvironmentChanged) async {
-    final debugOptions = CatcherOptions(
-        SilentReportMode(),
-        [
-          ConsoleHandler(
-              enableApplicationParameters: false,
-              enableDeviceParameters: false),
-        ],
-        reportOccurrenceTimeout: 100);
-    Catcher(
-      runAppFunction: () =>
-          super.runApplication(container, onEnvironmentChanged),
-      debugConfig: debugOptions,
-      releaseConfig: debugOptions,
-      enableLogger: false,
-    );
+    FlutterError.onError = (details) async {
+      // handle
+    };
+    if (!kIsWeb) {
+      Isolate.current.addErrorListener(
+        RawReceivePort((dynamic pair) async {
+          final isolateError = pair as List;
+          // handle
+        }).sendPort,
+      );
+    }
+    runZonedGuarded<Future<void>>(
+        () => super.runApplication(container, onEnvironmentChanged),
+        (error, stackTrace) {
+      // handle
+    });
   }
 }
 
-class DevRunner extends CatcherRunner {
+class DevRunner extends ErrorCatchRunner {
   @override
   Environment get environment => Environment.dev;
 }
 
-class ProdRunner extends CatcherRunner {
+class ProdRunner extends ErrorCatchRunner {
   @override
   Environment get environment => Environment.prod;
 }
 
-class MockRunner extends CatcherRunner {
+class MockRunner extends ErrorCatchRunner {
   @override
   Environment get environment => Environment.prod;
 }
