@@ -18,9 +18,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  /// Instance of [RootRouter]
-  final RootRouter _rootRouter = RootRouter();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -30,15 +27,9 @@ class _AppState extends State<App> {
               widget.onEnvironmentChanged(environment),
           child: Provider<DependencyContainer>.value(
             value: widget.container,
-            child: MaterialApp.router(
-              routerDelegate: _rootRouter.delegate(
-                initialRoutes: [const AppSplashRoute()],
-                placeholder: (_) => const AppSplashScreen(),
-              ),
-              routeInformationParser: _rootRouter.defaultRouteParser(),
+            child: const MaterialApp(
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              theme: AppTheme.light,
             ),
           )),
     );
