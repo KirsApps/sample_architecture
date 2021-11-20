@@ -1,19 +1,20 @@
 part of '../root.dart';
 
-/// Dependency injection container.
+/// The dependency injection container.
 ///
-/// Contains all application dependencies.
+/// This container contains all application dependencies.
 class DependencyContainer {
-  /// Application config
+  /// The Application config.
   final Config config;
 
-  /// Application environment
+  /// The Application environment.
   final Environment environment;
 
-  /// Dio instance for requests to backend
+  /// The  Dio instance that this container uses.
   final Dio dio;
 
-  ///Creates RootContainer
+  /// Creates the [DependencyContainer] that uses
+  /// the given parameters.
   DependencyContainer({
     required this.config,
     required this.dio,

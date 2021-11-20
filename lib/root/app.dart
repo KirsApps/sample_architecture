@@ -1,14 +1,15 @@
 part of 'root.dart';
 
-///Application root widget
+/// The application root widget.
 class App extends StatefulWidget {
-  ///Initial [DependencyContainer] for dependency injection
+  /// The [DependencyContainer] for dependency injection.
   final DependencyContainer container;
 
-  /// [Environment] changed callback
+  /// The [Environment] change callback.
   final EnvironmentChangedCallback onEnvironmentChanged;
 
-  ///Creates application root widget
+  /// Creates the application root widget that uses
+  /// the given parameters.
   const App({
     Key? key,
     required this.container,

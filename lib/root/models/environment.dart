@@ -1,6 +1,6 @@
 part of '../root.dart';
 
-/// Applications environments
+/// The application environments.
 enum Environment {
   /// Production
   prod,
@@ -12,10 +12,10 @@ enum Environment {
   mock,
 }
 
-/// Extension on [Environment] to return [Config]
+/// Extension on the [Environment] to return the [Config]
 /// associated with this [Environment]
 extension EnvironmentConfig on Environment {
-  ///Returns [Config] associated with this
+  /// Returns the [Config] that is associated with this.
   Config config() {
     if (this == Environment.prod) {
       return Config(
