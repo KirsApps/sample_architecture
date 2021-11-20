@@ -97,5 +97,5 @@ class ProdRunner extends ErrorCatchRunner {
 
 class MockRunner extends ErrorCatchRunner {
   @override
-  Environment get environment => Environment.prod;
+  Environment get environment => Environment.mock;
 }
