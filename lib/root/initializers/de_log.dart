@@ -29,5 +29,6 @@ Future<DeLog<DeLogRecord>> initializeDeLog(Config config) =>
 
       /// Here you can handle errors in low-level error handlers such as Firebase, Sentry.
       (error, stackTrace) => print(
-          'error in create DeLog instance \nerror: $error \n stackTrace: $stackTrace'),
+        'error in create DeLog instance \nerror: $error \n stackTrace: $stackTrace',
+      ),
     )!;
