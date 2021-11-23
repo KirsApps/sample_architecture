@@ -1,7 +1,7 @@
 part of '../root.dart';
 
 /// Returns initialized [Dio] instance with [AppLoggerInterceptor]
-Dio initializeDio(String baseUrl) {
+Dio initializeDio(String baseUrl, DeLog logger) {
   final dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
@@ -11,5 +11,6 @@ Dio initializeDio(String baseUrl) {
       },
     ),
   );
+  dio.interceptors.add(DeLogInterceptor(logger: logger));
   return dio;
 }

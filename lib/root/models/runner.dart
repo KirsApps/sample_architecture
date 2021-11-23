@@ -38,7 +38,7 @@ abstract class AppRunner extends Runner {
   Future<DependencyContainer> initializeContainer() async {
     final config = environment.config();
     final logger = await initializeDeLog(config);
-    final dio = initializeDio(config.apiUrl);
+    final dio = initializeDio(config.apiUrl, logger);
     return DependencyContainer(
       config: config,
       dio: dio,

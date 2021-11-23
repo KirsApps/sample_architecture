@@ -1,9 +1,13 @@
 library de_log_kit;
 
+import 'dart:convert';
+
 import 'package:data_queue/data_queue.dart';
 import 'package:de_log/de_log.dart';
+import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 
+part 'de_log_interceptor.dart';
 part 'record.dart';
 
 /// The class prints all records.
