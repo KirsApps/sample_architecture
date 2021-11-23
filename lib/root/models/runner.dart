@@ -6,6 +6,7 @@ part of '../root.dart';
 /// and runs the application with the [runApplication] method.
 abstract class Runner {
   late DependencyContainer _container;
+
   Future<void> run(EnvironmentChangedCallback onEnvironmentChanged) async {
     _container = await initializeContainer();
     await runApplication(_container, onEnvironmentChanged);

@@ -3,7 +3,7 @@ part of '../root.dart';
 /// The callback with new [Environment]
 typedef EnvironmentChangedCallback = Future<void> Function(Environment);
 
-/// The Application entry point.
+/// The Application's entry point.
 ///
 /// This class handles app components initializing with
 /// the [initializeComponents] method and then calls
@@ -11,7 +11,7 @@ typedef EnvironmentChangedCallback = Future<void> Function(Environment);
 /// The [Environment] change is active with the [changeEnvironment] method.
 ///
 /// Internally this class keeps the current active runner initialized
-/// in the run method and calls the clean method in the change method.
+/// in the run method and calls the runner's clean method in the [changeEnvironment] method.
 abstract class Manager {
   /// The current runner
   late Runner _runner;
