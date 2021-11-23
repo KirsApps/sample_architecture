@@ -36,11 +36,13 @@ abstract class AppRunner extends Runner {
   @override
   Future<DependencyContainer> initializeContainer() async {
     final config = environment.config();
+    final logger = await initializeDeLog(config);
     final dio = initializeDio(config.apiUrl);
     return DependencyContainer(
       config: config,
       dio: dio,
       environment: environment,
+      logger: logger,
     );
   }
 
@@ -66,21 +68,41 @@ abstract class ErrorCatchRunner extends AppRunner {
     EnvironmentChangedCallback onEnvironmentChanged,
   ) async {
     FlutterError.onError = (details) async {
-      // handle
+      container.logger.error(
+        DeLogRecord(
+          'The error  caught in FlutterError.onError',
+          name: 'FlutterError.onError',
+          error: details.exception,
+          stackTrace: details.stack,
+        ),
+      );
     };
-    if (!kIsWeb) {
+    if (!foundation.kIsWeb) {
       Isolate.current.addErrorListener(
         RawReceivePort((dynamic pair) async {
-          //final isolateError = pair as List;
-          // handle
-        })
-            .sendPort,
+          final isolateError = pair as List<String>;
+          container.logger.error(
+            DeLogRecord(
+              'The error caught in Isolate.current.addErrorListener',
+              name: 'Isolate.current.addErrorListener',
+              error: isolateError.first,
+              stackTrace: StackTrace.fromString(isolateError.last),
+            ),
+          );
+        }).sendPort,
       );
     }
     runZonedGuarded<Future<void>>(
         () => super.runApplication(container, onEnvironmentChanged),
         (error, stackTrace) {
-      // handle
+      container.logger.error(
+        DeLogRecord(
+          'The error caught in runZonedGuarded',
+          name: 'runZonedGuarded',
+          error: error,
+          stackTrace: stackTrace,
+        ),
+      );
     });
   }
 }

@@ -17,18 +17,11 @@ enum Environment {
 extension EnvironmentConfig on Environment {
   /// Returns the [Config] that is associated with this.
   Config config() {
-    if (this == Environment.prod) {
-      return Config(
-        apiUrl: 'apiUrl',
-      );
-    } else if (this == Environment.dev) {
-      return Config(
-        apiUrl: 'apiUrl',
-      );
-    } else {
-      return Config(
-        apiUrl: '',
-      );
-    }
+    /// Here you return different configs for each environment.
+    return Config(
+      apiUrl: '',
+      deLogEncryptionKey: 'deLogKey',
+      deLogBoxKey: 'deLogBoxKey',
+    );
   }
 }
