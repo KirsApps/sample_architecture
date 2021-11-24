@@ -11,6 +11,13 @@ Dio initializeDio(String baseUrl, DeLog logger) {
       },
     ),
   );
-  dio.interceptors.add(DeLogInterceptor(logger: logger));
+  dio.interceptors.add(
+    DeLogInterceptor(
+      logger: logger,
+      requestHeader: false,
+      requestBody: false,
+      responseBody: false,
+    ),
+  );
   return dio;
 }
