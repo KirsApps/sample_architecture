@@ -1,12 +1,26 @@
 part of '../developer_part.dart';
 
 /// Widget for display all log records
-class LogScreen extends StatelessWidget {
+class LogScreen extends StatefulWidget {
   /// List with all log records
   final List<RenderableRecord> records;
 
   /// Creates [LogScreen]
   const LogScreen({Key? key, required this.records}) : super(key: key);
+
+  @override
+  _LogScreenState createState() => _LogScreenState();
+}
+
+class _LogScreenState extends State<LogScreen> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,16 +60,36 @@ class LogScreen extends StatelessWidget {
         },
         child: Scrollbar(
           child: ListView.separated(
+            controller: _scrollController,
             separatorBuilder: (_, __) => const Divider(),
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.all(20),
-              child: records[index].render(context),
+              child: widget.records[index].render(context),
             ),
-            itemCount: records.length,
+            itemCount: widget.records.length,
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) context.read<DeveloperLogBloc>().add(DeveloperLogFetched());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
   }
 }
