@@ -61,7 +61,7 @@ class DeLogRecord {
 }
 
 /// The class contains the [Level] and the [DeLogRecord].
-class HiveRecord {
+class HiveRecord implements RenderableRecord {
   /// The log level.
   final Level level;
 
@@ -84,6 +84,31 @@ class HiveRecord {
         (element) => element.toString() == json['level'] as String,
       ),
       DeLogRecord.fromJson(json['logRecord']),
+    );
+  }
+
+  @override
+  Widget render(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: ListTile.divideTiles(
+          tiles: [
+            Text('Level: ${describeEnum(level)}'),
+            ...logRecord
+                .toJson()
+                .entries
+                .where((element) => element.value != null)
+                .map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text('${e.key}: ${e.value}'),
+                  ),
+                )
+          ],
+        ).toList(),
+      ),
     );
   }
 }

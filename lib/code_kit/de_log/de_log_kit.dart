@@ -5,7 +5,10 @@ import 'dart:convert';
 import 'package:data_queue/data_queue.dart';
 import 'package:de_log/de_log.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:sample_architecture/parts/developer/developer_part.dart';
 
 part 'de_log_interceptor.dart';
 part 'record.dart';
@@ -23,7 +26,8 @@ class PrintHandler extends LogHandler<DeLogRecord> {
 }
 
 /// The class stores all records in the hive.
-class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord> {
+class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord>
+    implements PaginationLogLoader<HiveRecord> {
   /// The box for records storing.
   final Box box;
 
@@ -39,4 +43,10 @@ class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord> {
       await box.close();
     }
   }
+
+  @override
+  Future<List<HiveRecord>> fetch(int offset, int take) async => box
+      .valuesBetween(startKey: offset, endKey: offset + take)
+      .map((e) => HiveRecord.fromJson(e))
+      .toList();
 }

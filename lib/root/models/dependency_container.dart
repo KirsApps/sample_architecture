@@ -16,6 +16,9 @@ class DependencyContainer {
   /// The logger.
   final DeLog<DeLogRecord> logger;
 
+  /// The log records loader that the developer_part uses.
+  final PaginationLogLoader<HiveRecord> paginationLogLoader;
+
   /// Creates the [DependencyContainer] that uses
   /// the given parameters.
   DependencyContainer({
@@ -23,6 +26,7 @@ class DependencyContainer {
     required this.dio,
     required this.environment,
     required this.logger,
+    required this.paginationLogLoader,
   });
 
   /// Frees resources that this container use.

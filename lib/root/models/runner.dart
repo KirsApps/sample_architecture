@@ -37,13 +37,15 @@ abstract class AppRunner extends Runner {
   @override
   Future<DependencyContainer> initializeContainer() async {
     final config = environment.config();
-    final logger = await initializeDeLog(config);
+    final hiveHandler = await initializeHiveLogHandler(config);
+    final logger = initializeDeLog(hiveHandler);
     final dio = initializeDio(config.apiUrl, logger);
     return DependencyContainer(
       config: config,
       dio: dio,
       environment: environment,
       logger: logger,
+      paginationLogLoader: hiveHandler,
     );
   }
 

@@ -17,11 +17,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_architecture/code_kit/de_log/de_log_kit.dart';
+import 'package:sample_architecture/parts/developer/developer_part.dart';
 import 'package:sample_architecture/parts/environment/cubit/environment_cubit.dart';
 
 part 'app.dart';
 part 'initializers/de_log.dart';
 part 'initializers/dio.dart';
+part 'initializers/hive_log_handler.dart';
 part 'models/config.dart';
 part 'models/dependency_container.dart';
 part 'models/environment.dart';
