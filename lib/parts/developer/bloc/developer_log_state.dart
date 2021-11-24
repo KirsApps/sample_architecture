@@ -2,7 +2,7 @@ part of '../developer_part.dart';
 
 enum DeveloperLogStatus { initial, success, failure }
 
-class DeveloperLogState<TRecord extends RenderableRecord> {
+class DeveloperLogState {
   DeveloperLogState({
     required this.records,
     this.status = DeveloperLogStatus.initial,
@@ -10,12 +10,12 @@ class DeveloperLogState<TRecord extends RenderableRecord> {
   });
 
   final DeveloperLogStatus status;
-  final List<TRecord> records;
+  final List<RenderableRecord> records;
   final bool hasReachedMax;
 
   DeveloperLogState copyWith({
     DeveloperLogStatus? status,
-    List<TRecord>? records,
+    List<RenderableRecord>? records,
     bool? hasReachedMax,
   }) {
     return DeveloperLogState(
