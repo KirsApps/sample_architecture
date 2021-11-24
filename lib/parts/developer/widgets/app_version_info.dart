@@ -67,7 +67,6 @@ class AppVersionInfo extends StatelessWidget {
                     const TextStyle(
                       fontSize: 14,
                       height: 2.14,
-                      color: Colors.black12,
                     ),
               )
             : Container(),

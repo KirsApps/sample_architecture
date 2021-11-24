@@ -41,7 +41,7 @@ class LogScreen extends StatelessWidget {
       body: RefreshIndicator(
         backgroundColor: Colors.white,
         onRefresh: () async {
-          context.read<DeveloperLogBloc>().add(DeveloperLogOpened());
+          context.read<DeveloperLogBloc>().add(DeveloperLogFetched());
           await context.read<DeveloperLogBloc>().stream.first;
         },
         child: Scrollbar(

@@ -5,7 +5,7 @@ Future<HiveQueueLogHandler> initializeHiveLogHandler(Config config) =>
     runZonedGuarded<Future<HiveQueueLogHandler>>(
       () async {
         List<int> bytesKey;
-        final String? hexKey = await const FlutterSecureStorage()
+        final hexKey = await const FlutterSecureStorage()
             .read(key: config.deLogEncryptionKey);
         if (hexKey != null) {
           bytesKey = hexDecode(hexKey);
@@ -25,6 +25,6 @@ Future<HiveQueueLogHandler> initializeHiveLogHandler(Config config) =>
 
       /// Here you can handle errors in low-level error handlers such as Firebase, Sentry.
       (error, stackTrace) => print(
-        'error in create DeLog instance \nerror: $error \n stackTrace: $stackTrace',
+        'error in create HiveQueueLogHandler instance \nerror: $error \n stackTrace: $stackTrace',
       ),
     )!;

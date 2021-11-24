@@ -27,7 +27,7 @@ class PrintHandler extends LogHandler<DeLogRecord> {
 
 /// The class stores all records in the hive.
 class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord>
-    implements PaginationLogLoader<HiveRecord> {
+    implements PaginationLogLoader {
   /// The box for records storing.
   final Box box;
 
@@ -37,7 +37,7 @@ class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord>
   Future<void> handleRecords() async {
     try {
       final recordData = await worker.next;
-      await box.add(recordData.toHiveRecord);
+      await box.add(recordData.toHiveRecord.toJson());
       await handleRecords();
     } on TerminatedException {
       await box.close();

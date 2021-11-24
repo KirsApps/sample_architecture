@@ -39,7 +39,7 @@ class DeLogRecord {
       'message': message,
       'time': time.toString(),
       'name': name,
-      'error': error,
+      'error': error.toString(),
       'stackTrace': stackTrace.toString(),
     };
   }
@@ -73,7 +73,7 @@ class HiveRecord implements RenderableRecord {
   Map<String, dynamic> toJson() {
     return {
       'level': level.toString(),
-      'logRecord': logRecord,
+      'logRecord': logRecord.toJson(),
     };
   }
 
@@ -90,16 +90,20 @@ class HiveRecord implements RenderableRecord {
   @override
   Widget render(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: ListTile.divideTiles(
+          context: context,
           tiles: [
             Text('Level: ${describeEnum(level)}'),
             ...logRecord
                 .toJson()
                 .entries
-                .where((element) => element.value != null)
+                .where(
+                  (element) =>
+                      element.value != null && element.key != 'stackTrace',
+                )
                 .map(
                   (e) => Padding(
                     padding: const EdgeInsets.only(top: 8.0),

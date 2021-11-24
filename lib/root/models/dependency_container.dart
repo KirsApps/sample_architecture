@@ -17,7 +17,7 @@ class DependencyContainer {
   final DeLog<DeLogRecord> logger;
 
   /// The log records loader that the developer_part uses.
-  final PaginationLogLoader<HiveRecord> paginationLogLoader;
+  final PaginationLogLoader paginationLogLoader;
 
   /// Creates the [DependencyContainer] that uses
   /// the given parameters.

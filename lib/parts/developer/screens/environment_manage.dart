@@ -49,9 +49,10 @@ class EnvironmentManage extends StatelessWidget {
               onPressed: () => Navigator.of(context).push<void>(
                 MaterialPageRoute(
                   builder: (_) => BlocProvider(
-                    create: (context) => DeveloperLogBloc<HiveRecord>(
+                    create: (context) => DeveloperLogBloc(
                       loader: container.paginationLogLoader,
-                    )..add(DeveloperLogOpened()),
+                      logger: container.logger,
+                    )..add(DeveloperLogFetched()),
                     child: const DeveloperLogBuilder(),
                   ),
                 ),

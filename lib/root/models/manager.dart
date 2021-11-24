@@ -62,4 +62,11 @@ class AppManager extends Manager {
       throw Exception('Runner not registered for $environment');
     }
   }
+
+  @override
+  Future<void> initializeComponents() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    final applicationDirectory = await getApplicationDocumentsDirectory();
+    Hive.init(applicationDirectory.path);
+  }
 }

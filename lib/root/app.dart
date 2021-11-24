@@ -30,11 +30,36 @@ class _AppState extends State<App> {
             widget.onEnvironmentChanged(environment),
         child: Provider<DependencyContainer>.value(
           value: widget.container,
-          child: MaterialApp(
+          child: const MaterialApp(
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
+            home: Welcome(),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class Welcome extends StatelessWidget {
+  const Welcome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Hi'),
+          ElevatedButton(
+            onPressed: () => throw Exception('test exception'),
+            child: const Text('test exception'),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 16),
+            child: DeveloperAppVersionInfo(),
+          )
+        ],
       ),
     );
   }
