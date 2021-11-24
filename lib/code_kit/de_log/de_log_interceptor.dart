@@ -4,13 +4,13 @@ part of 'de_log_kit.dart';
 class DeLogInterceptor extends Interceptor {
   /// Creates [DeLogInterceptor] that uses given parameters.
   DeLogInterceptor({
+    required this.logger,
     this.request = true,
     this.requestHeader = true,
     this.requestBody = true,
     this.responseHeader = true,
     this.responseBody = true,
     this.error = true,
-    required this.logger,
   });
 
   /// Whether the request [Options] logs.
