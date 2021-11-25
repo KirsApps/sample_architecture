@@ -20,11 +20,11 @@ class DeveloperLogBloc extends Bloc<DeveloperLogEvent, DeveloperLogState> {
       transformer: _throttleDroppable(_throttleDuration),
     );
     on<DeveloperLogRefreshed>(
-      _onLogRefreshed,
+      _onRecordsRefreshed,
       transformer: sequential(),
     );
     on<DeveloperLogExtracted>(
-      _onLogExtracted,
+      _onRecordsExtracted,
       transformer: sequential(),
     );
   }
@@ -74,7 +74,7 @@ class DeveloperLogBloc extends Bloc<DeveloperLogEvent, DeveloperLogState> {
     }
   }
 
-  Future<void> _onLogRefreshed(
+  Future<void> _onRecordsRefreshed(
     DeveloperLogRefreshed event,
     Emitter<DeveloperLogState> emit,
   ) async {
@@ -82,7 +82,7 @@ class DeveloperLogBloc extends Bloc<DeveloperLogEvent, DeveloperLogState> {
     add(DeveloperLogFetched());
   }
 
-  Future<void> _onLogExtracted(
+  Future<void> _onRecordsExtracted(
     DeveloperLogExtracted event,
     Emitter<DeveloperLogState> emit,
   ) async {
