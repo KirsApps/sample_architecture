@@ -70,7 +70,7 @@ class AppVersionInfo extends StatelessWidget {
                       height: 2.14,
                     ),
               )
-            : Container(),
+            : const SizedBox.shrink(),
       ),
     );
   }
