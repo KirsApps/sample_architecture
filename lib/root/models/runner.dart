@@ -7,6 +7,7 @@ part of '../root.dart';
 abstract class Runner {
   late DependencyContainer _container;
 
+  /// Initializes the [DependencyContainer] and runs the [runApplication] method.
   Future<void> run(EnvironmentChangedCallback onEnvironmentChanged) async {
     _container = await initializeContainer();
     await runApplication(_container, onEnvironmentChanged);
@@ -33,6 +34,7 @@ abstract class Runner {
   Environment get environment;
 }
 
+/// The base [Runner] implementation.
 abstract class AppRunner extends Runner {
   @override
   Future<DependencyContainer> initializeContainer() async {
@@ -64,6 +66,7 @@ abstract class AppRunner extends Runner {
   }
 }
 
+/// The runner extends the [AppRunner] and adds the error handling functionality.
 abstract class ErrorCatchRunner extends AppRunner {
   @override
   Future<void> runApplication(
@@ -110,16 +113,19 @@ abstract class ErrorCatchRunner extends AppRunner {
   }
 }
 
+/// The [Environment.dev] runner.
 class DevRunner extends ErrorCatchRunner {
   @override
   Environment get environment => Environment.dev;
 }
 
+/// The [Environment.prod] runner.
 class ProdRunner extends ErrorCatchRunner {
   @override
   Environment get environment => Environment.prod;
 }
 
+/// The [Environment.mock] runner.
 class MockRunner extends ErrorCatchRunner {
   @override
   Environment get environment => Environment.mock;

@@ -49,6 +49,7 @@ abstract class Manager {
   Runner getRunnerForEnvironment(Environment environment);
 }
 
+/// The [Manager] implementation.
 class AppManager extends Manager {
   @override
   Runner getRunnerForEnvironment(Environment environment) {
