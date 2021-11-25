@@ -57,6 +57,7 @@ class Welcome extends StatelessWidget {
             const Text(
               'Hi. Thanks for your interest in my app architecture sample. I hope you find it helpful.',
               textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 17),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16),
