@@ -1,11 +1,11 @@
 part of '../developer_part.dart';
 
-/// Widget for display all log records
+/// The widget displays all log records.
 class LogScreen extends StatefulWidget {
-  /// List with all log records
+  /// The log records list.
   final List<RenderableRecord> records;
 
-  /// Creates [LogScreen]
+  /// Creates the [LogScreen] that shows [records].
   const LogScreen({Key? key, required this.records}) : super(key: key);
 
   @override

@@ -1,7 +1,10 @@
 part of '../developer_part.dart';
 
-/// The base event for the [DeveloperLogBloc]
+/// The base event that the [DeveloperLogBloc] uses.
 abstract class DeveloperLogEvent {}
 
-/// The event called then the screen with log opens.
+/// Records fetched.
 class DeveloperLogFetched extends DeveloperLogEvent {}
+
+/// Records refreshed.
+class DeveloperLogRefreshed extends DeveloperLogEvent {}

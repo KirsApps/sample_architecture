@@ -1,25 +1,30 @@
 part of '../developer_part.dart';
 
 const _recordsLimit = 20;
-const throttleDuration = Duration(milliseconds: 200);
 
-EventTransformer<E> throttleDroppable<E>(Duration duration) {
+const _throttleDuration = Duration(milliseconds: 200);
+
+EventTransformer<E> _throttleDroppable<E>(Duration duration) {
   return (events, mapper) {
     return droppable<E>().call(events.throttle(duration), mapper);
   };
 }
 
-/// Bloc for loading log records
+/// The bloc loads log records.
 class DeveloperLogBloc extends Bloc<DeveloperLogEvent, DeveloperLogState> {
-  /// Creates [DeveloperLogBloc]
+  /// Creates the [DeveloperLogBloc] that loads log records.
   DeveloperLogBloc({required this.loader, required this.logger})
       : super(DeveloperLogState(records: [])) {
     on<DeveloperLogFetched>(
       _onRecordsFetched,
-      transformer: throttleDroppable(throttleDuration),
+      transformer: _throttleDroppable(_throttleDuration),
     );
   }
+
+  /// The [PaginationLogLoader] instance.
   final PaginationLogLoader loader;
+
+  /// The [DeLog<DeLogRecord>] instance.
   final DeLog<DeLogRecord> logger;
 
   Future<void> _onRecordsFetched(

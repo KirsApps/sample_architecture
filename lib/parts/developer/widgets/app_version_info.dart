@@ -1,11 +1,12 @@
 part of '../developer_part.dart';
 
-/// The widget for display the [AppVersionInfo] and handling taps for the [LogScreen] open.
+/// The widget displays the app version and navigates to the [EnvironmentManage] screen.
 class DeveloperAppVersionInfo extends StatefulWidget {
-  /// The text style of app version.
+  /// The app version text style.
   final TextStyle? testStyle;
 
-  /// Creates [DeveloperAppVersionInfo]
+  /// Creates the [DeveloperAppVersionInfo] that displays the app version
+  /// and navigates to the [EnvironmentManage] screen.
   const DeveloperAppVersionInfo({Key? key, this.testStyle}) : super(key: key);
 
   @override
@@ -46,12 +47,12 @@ class _DeveloperAppVersionInfoState extends State<DeveloperAppVersionInfo> {
       );
 }
 
-/// Widget for display app version
+/// The widget displays the app version.
 class AppVersionInfo extends StatelessWidget {
-  /// The text style of app version.
+  /// The app version text style.
   final TextStyle? testStyle;
 
-  /// Creates [AppVersionInfo]
+  /// Creates the [AppVersionInfo] that displays the app version.
   const AppVersionInfo({Key? key, this.testStyle}) : super(key: key);
 
   @override

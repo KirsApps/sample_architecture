@@ -49,4 +49,8 @@ class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord>
       .valuesBetween(startKey: offset, endKey: offset + take)
       .map((e) => HiveRecord.fromJson(e))
       .toList();
+
+  @override
+  Future<List<RenderableRecord>> fetchAll() async =>
+      box.values.map((e) => HiveRecord.fromJson(e)).toList();
 }

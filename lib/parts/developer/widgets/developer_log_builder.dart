@@ -1,8 +1,9 @@
 part of '../developer_part.dart';
 
-/// Widget with [BlocBuilder] for [DeveloperLogBloc]
+/// The widget contains the [BlocBuilder] for the [DeveloperLogBloc].
 class DeveloperLogBuilder extends StatelessWidget {
-  /// Creates [DeveloperLogBuilder]
+  /// Creates the [DeveloperLogBuilder] that contains the [BlocBuilder]
+  /// for the [DeveloperLogBloc].
   const DeveloperLogBuilder({Key? key}) : super(key: key);
 
   @override

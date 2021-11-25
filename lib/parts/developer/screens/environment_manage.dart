@@ -1,8 +1,8 @@
 part of '../developer_part.dart';
 
-/// Widget for show and change app [Environment]
+/// The widget is for showing and changing the app's [Environment].
 class EnvironmentManage extends StatelessWidget {
-  /// Creates [EnvironmentManage]
+  ///  Creates the [EnvironmentManage] widget to show and change the app's [Environment].
   const EnvironmentManage({Key? key}) : super(key: key);
 
   @override
