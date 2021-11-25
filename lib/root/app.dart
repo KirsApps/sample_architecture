@@ -41,25 +41,29 @@ class _AppState extends State<App> {
   }
 }
 
+/// The welcome screen.
 class Welcome extends StatelessWidget {
+  /// Creates the [Welcome] screen that shows welcome text.
   const Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Hi'),
-          ElevatedButton(
-            onPressed: () => throw Exception('test exception'),
-            child: const Text('test exception'),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16),
-            child: DeveloperAppVersionInfo(),
-          )
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Hi'),
+            ElevatedButton(
+              onPressed: () => throw Exception('test exception'),
+              child: const Text('test exception'),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 16),
+              child: DeveloperAppVersionInfo(),
+            )
+          ],
+        ),
       ),
     );
   }
