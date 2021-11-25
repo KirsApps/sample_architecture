@@ -29,7 +29,7 @@ class PrintHandler extends LogHandler<DeLogRecord> {
 class HiveQueueLogHandler extends QueueLogHandler<DeLogRecord>
     implements PaginationLogLoader {
   /// The box for records storing.
-  final Box box;
+  final Box<Map> box;
 
   /// Creates [HiveQueueLogHandler] that stores all records in the hive.
   HiveQueueLogHandler(this.box);
