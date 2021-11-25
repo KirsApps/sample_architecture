@@ -6,6 +6,27 @@ extension RecordDataToHive on RecordData<DeLogRecord> {
   HiveRecord get toHiveRecord => HiveRecord(level, record);
 }
 
+/// The extension returns the [Color] that represents the [Level].
+extension LevelColor on Level {
+  /// Returns the [Color] that represents the [Level].
+  Color get color {
+    switch (this) {
+      case Level.trace:
+        return Colors.black12;
+      case Level.debug:
+        return Colors.brown;
+      case Level.info:
+        return Colors.black;
+      case Level.warn:
+        return Colors.deepOrange;
+      case Level.error:
+        return Colors.red;
+      case Level.fatal:
+        return Colors.red;
+    }
+  }
+}
+
 /// The log record data.
 class DeLogRecord {
   /// The log message.
@@ -67,6 +88,8 @@ class HiveRecord implements RenderableRecord {
 
   /// The log record.
   final DeLogRecord logRecord;
+
+  /// Creates the [HiveRecord] that uses given parameters.
   HiveRecord(this.level, this.logRecord);
 
   /// Returns json that represents this.
@@ -93,25 +116,32 @@ class HiveRecord implements RenderableRecord {
       padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: [
-            Text('Level: ${describeEnum(level)}'),
-            ...logRecord
-                .toJson()
-                .entries
-                .where(
-                  (element) =>
-                      element.value != null && element.key != 'stackTrace',
-                )
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text('${e.key}: ${e.value}'),
+        children: [
+          Text(
+            'Level: ${describeEnum(level)}',
+            style: TextStyle(
+              color: level.color,
+            ),
+          ),
+          ...logRecord
+              .toJson()
+              .entries
+              .where(
+                (element) =>
+                    element.value != null && element.key != 'stackTrace',
+              )
+              .map(
+                (e) => Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    '${e.key}: ${e.value}',
+                    style: TextStyle(
+                      color: level.color,
+                    ),
                   ),
-                )
-          ],
-        ).toList(),
+                ),
+              )
+        ],
       ),
     );
   }
