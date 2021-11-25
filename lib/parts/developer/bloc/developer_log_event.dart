@@ -8,3 +8,6 @@ class DeveloperLogFetched extends DeveloperLogEvent {}
 
 /// Records refreshed.
 class DeveloperLogRefreshed extends DeveloperLogEvent {}
+
+/// Records extracted.
+class DeveloperLogExtracted extends DeveloperLogEvent {}

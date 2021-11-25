@@ -19,6 +19,14 @@ class DeveloperLogBloc extends Bloc<DeveloperLogEvent, DeveloperLogState> {
       _onRecordsFetched,
       transformer: _throttleDroppable(_throttleDuration),
     );
+    on<DeveloperLogRefreshed>(
+      _onLogRefreshed,
+      transformer: sequential(),
+    );
+    on<DeveloperLogExtracted>(
+      _onLogExtracted,
+      transformer: sequential(),
+    );
   }
 
   /// The [PaginationLogLoader] instance.
@@ -64,5 +72,24 @@ class DeveloperLogBloc extends Bloc<DeveloperLogEvent, DeveloperLogState> {
       );
       emit(state.copyWith(status: DeveloperLogStatus.failure));
     }
+  }
+
+  Future<void> _onLogRefreshed(
+    DeveloperLogRefreshed event,
+    Emitter<DeveloperLogState> emit,
+  ) async {
+    emit(state.copyWith(status: DeveloperLogStatus.initial));
+    add(DeveloperLogFetched());
+  }
+
+  Future<void> _onLogExtracted(
+    DeveloperLogExtracted event,
+    Emitter<DeveloperLogState> emit,
+  ) async {
+    final records = await loader.fetchAll();
+    final file = File("${(await getTemporaryDirectory()).path}/log.json")
+      ..create()
+      ..writeAsString(jsonEncode(records));
+    await Share.shareFiles([file.path], subject: "Log");
   }
 }

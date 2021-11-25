@@ -38,11 +38,8 @@ class _LogScreenState extends State<LogScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: GestureDetector(
-              onTap: () async {
-                //  final file =
-                //      await ExcelConverterStrategy().convertRecords(records);
-                //   await Share.shareFiles([file.path], subject: "Log");
-              },
+              onTap: () =>
+                  context.read<DeveloperLogBloc>().add(DeveloperLogExtracted()),
               child: const Icon(
                 Icons.upload_file,
                 color: Colors.white,
@@ -55,7 +52,7 @@ class _LogScreenState extends State<LogScreen> {
       body: RefreshIndicator(
         backgroundColor: Colors.white,
         onRefresh: () async {
-          context.read<DeveloperLogBloc>().add(DeveloperLogFetched());
+          context.read<DeveloperLogBloc>().add(DeveloperLogRefreshed());
           await context.read<DeveloperLogBloc>().stream.first;
         },
         child: Scrollbar(
