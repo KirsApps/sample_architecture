@@ -49,14 +49,28 @@ class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Hi'),
-            ElevatedButton(
-              onPressed: () => throw Exception('test exception'),
-              child: const Text('test exception'),
+            const Text(
+              'Hi. Thanks for your interest in my app architecture sample. I hope you find it helpful.',
+              textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Image.network(
+                'https://media.giphy.com/media/dvO6TuCJ706KznpHC9/giphy.gif',
+                height: 200,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: ElevatedButton(
+                onPressed: () => throw Exception('test exception'),
+                child: const Text('test exception'),
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(top: 16),
