@@ -18,7 +18,7 @@ class PrintHandler extends LogHandler<DeLogRecord> {
   @override
   void handle(RecordData<DeLogRecord> data) {
     //ignore:avoid_print
-    print(data.record);
+    print("Level: ${describeEnum(data.level)} \nData: ${data.record}");
   }
 
   @override
