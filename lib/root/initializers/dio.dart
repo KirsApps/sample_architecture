@@ -1,6 +1,6 @@
 part of '../root.dart';
 
-/// Returns initialized [Dio] instance with [AppLoggerInterceptor]
+/// Returns the initialized [Dio] instance that uses the [DeLogInterceptor].
 Dio initializeDio(String baseUrl, DeLog logger) {
   final dio = Dio(
     BaseOptions(

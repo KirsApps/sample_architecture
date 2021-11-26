@@ -2,7 +2,7 @@ part of 'root.dart';
 
 /// The application root widget.
 class App extends StatefulWidget {
-  /// The [DependencyContainer] for dependency injection.
+  /// The [DependencyContainer] that the application use for dependency injection.
   final DependencyContainer container;
 
   /// The [Environment] change callback.

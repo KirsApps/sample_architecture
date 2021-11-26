@@ -1,6 +1,6 @@
 part of '../root.dart';
 
-/// The callback with new [Environment]
+/// The callback with the new [Environment].
 typedef EnvironmentChangedCallback = Future<void> Function(Environment);
 
 /// The Application's entry point.
@@ -13,13 +13,13 @@ typedef EnvironmentChangedCallback = Future<void> Function(Environment);
 /// Internally this class keeps the current active runner initialized
 /// in the run method and calls the runner's clean method in the [changeEnvironment] method.
 abstract class Manager {
-  /// The current runner
+  /// The current runner.
   late Runner _runner;
 
-  /// Initializes components and runs the given [environment]
+  /// Initializes components and runs the given [environment].
   ///
   /// This is the application entry point. The [Manager.initializeComponents()] method
-  /// will be called once
+  /// will be called once.
   Future<void> runMain(Environment environment) async {
     await initializeComponents();
     await runEnvironment(environment);
@@ -39,7 +39,7 @@ abstract class Manager {
     await runEnvironment(environment);
   }
 
-  /// Hook method
+  /// The hook method.
   /// This method will be called once.
   @protected
   Future<void> initializeComponents() async {}

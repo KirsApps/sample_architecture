@@ -1,6 +1,6 @@
 part of '../root.dart';
 
-/// Returns initialized [HiveQueueLogHandler] instance that uses the encrypted box.
+/// Returns the initialized [HiveQueueLogHandler] instance that uses the encrypted box.
 Future<HiveQueueLogHandler> initializeHiveLogHandler(Config config) =>
     runZonedGuarded<Future<HiveQueueLogHandler>>(
       () async {
@@ -23,7 +23,7 @@ Future<HiveQueueLogHandler> initializeHiveLogHandler(Config config) =>
         return HiveQueueLogHandler(_box);
       },
 
-      /// Here you can handle errors in low-level error handlers such as Firebase, Sentry.
+      /// Here you can handle errors in the low-level error handlers such as Firebase, Sentry.
       (error, stackTrace) => print(
         'error in create HiveQueueLogHandler instance \nerror: $error \n stackTrace: $stackTrace',
       ),

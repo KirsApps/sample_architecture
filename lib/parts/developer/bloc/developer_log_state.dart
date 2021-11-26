@@ -12,9 +12,9 @@ enum DeveloperLogStatus {
   failure
 }
 
-/// The state is with status, records, and hasReachedMax data.
+/// The state is with status, records, and the hasReachedMax data.
 class DeveloperLogState {
-  /// Creates state that uses given parameters.
+  /// Creates the state that uses given parameters.
   DeveloperLogState({
     required this.records,
     this.status = DeveloperLogStatus.initial,

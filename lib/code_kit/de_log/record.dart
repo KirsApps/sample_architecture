@@ -1,8 +1,8 @@
 part of 'de_log_kit.dart';
 
-/// The extension that converts [RecordData<LogRecord>] to [HiveRecord].
+/// The extension is for converting the [RecordData<LogRecord>] to the [HiveRecord].
 extension RecordDataToHive on RecordData<DeLogRecord> {
-  /// Returns [HiveRecord] that creates from this.
+  /// Returns the [HiveRecord] that creates from this.
   HiveRecord get toHiveRecord => HiveRecord(level, record);
 }
 
@@ -54,7 +54,7 @@ class DeLogRecord {
   })  : stackTrace = stackTrace ?? StackTrace.current,
         time = time ?? DateTime.now();
 
-  /// Returns json that represents this.
+  /// Returns the json that represents this.
   Map<String, dynamic> toJson() {
     return {
       'message': message,
@@ -92,7 +92,7 @@ class HiveRecord implements RenderableRecord {
   /// Creates the [HiveRecord] that uses given parameters.
   HiveRecord(this.level, this.logRecord);
 
-  /// Returns json that represents this.
+  /// Returns the json that represents this.
   Map<String, dynamic> toJson() {
     return {
       'level': level.toString(),
