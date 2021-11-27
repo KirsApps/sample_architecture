@@ -10,7 +10,7 @@ class DependencyContainer {
   /// The Application environment.
   final Environment environment;
 
-  /// The  Dio instance that this container uses.
+  /// The [Dio] instance that this container uses.
   final Dio dio;
 
   /// The logger.

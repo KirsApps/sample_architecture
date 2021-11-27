@@ -1,6 +1,6 @@
 part of 'de_log_kit.dart';
 
-/// The interceptor logs network requests with [DeLog].
+/// The interceptor logs the network requests with the [DeLog].
 class DeLogInterceptor extends Interceptor {
   /// Creates [DeLogInterceptor] that uses given parameters.
   DeLogInterceptor({

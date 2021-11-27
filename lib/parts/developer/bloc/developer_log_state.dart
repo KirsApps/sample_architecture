@@ -12,7 +12,7 @@ enum DeveloperLogStatus {
   failure
 }
 
-/// The state is with status, records, and the hasReachedMax data.
+/// The state is with the status, records, and the hasReachedMax data.
 class DeveloperLogState {
   /// Creates the state that uses given parameters.
   DeveloperLogState({
