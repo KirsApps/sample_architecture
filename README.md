@@ -7,4 +7,4 @@ There are main features:
 * The **error handling** integrated. It captures all errors which can appear in the app.
 * The **logging** is available with the DeLog.
 * The **developer part** allows you to change the environment and see all app logs. 
-> To see the developer mode, you need to fast tap three times on the app version text.
+> To see the developer mode, you need to fast tap five times on the app version text.
