@@ -1,16 +1,9 @@
-# sample_architecture
+This is the sample architecture project that described in [my medium article.](https://medium.com/@kirsapps/my-vision-of-flutter-app-architecture-a80fd8824568)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+There are main features:
+* The file structure is easy to understand and easy to extend.
+* The dependency injection is compile-time safe without global variables and singletons.
+* The environment management is available with custom configs and dependencies.
+* The error handling integrated. It captures all errors which can appear in the app.
+* The logging is available with the DeLog.
+* The developer part allows you to change the environment and see all app logs. (To see the developer mode, you need to fast tap three times on the app version text)
